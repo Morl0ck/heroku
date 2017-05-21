@@ -6,7 +6,8 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/,
-      wooRegex = /\bwoo+\b/;
+      wooRegex = /\bwoo+\b/i,
+      savageRegex = /\bsavage\b/i;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -16,8 +17,13 @@ function respond() {
   }
   else if (request.text && wooRegex.test(request.text)) {
     this.res.writeHead(200);
-    var wooGif = getWooGif();
-    postMessage(wooGif);
+    var gifUrl = getWooGif();
+    postMessage(gifUrl);
+    this.res.end();
+  } else if (request.text && savageRegex.test(request.text)) {
+    this.res.writeHead(200);
+    var gifUrl = getSavageGif();
+    postMessage(gifUrl);
     this.res.end();
   } else {
     console.log("don't care");
@@ -37,6 +43,22 @@ function getWooGif() {
   ];
 
   var rand = Math.round(Math.random()*5);
+
+  return gifs[rand];
+}
+
+function getSavageGif() {
+  var gifs = [
+    "https://media.giphy.com/media/BaSHs78BU2ZYQ/giphy.gif",
+    "https://media.giphy.com/media/rRGMu2D3QV2cU/giphy.gif",
+    "https://media.giphy.com/media/12k3XRGaPqjdja/giphy.gif",
+    "https://media.giphy.com/media/wlxNmckePXGnK/giphy.gif", 
+    "https://media.giphy.com/media/d1MTUu7cK4fjG/giphy.gif", 
+    "https://media.giphy.com/media/AH0lMIxxUen6/giphy.gif",
+    "https://media.giphy.com/media/AobQDNI4K7a4U/giphy.gif"
+  ];
+
+  var rand = Math.round(Math.random()*6);
 
   return gifs[rand];
 }
