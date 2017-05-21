@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/,
-      wooRegex = /(?<![\w\d])wo+(?![\w\d])/;
+      wooRegex = /\bwoo+\b/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
