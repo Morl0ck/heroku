@@ -5,11 +5,19 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
+      botRegex = /^\/cool guy$/,
+      woo = /woo/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    postMessage();
+    var botResponse = cool();
+    postMessage(botResponse);
+    this.res.end();
+  }
+  else if () {
+    this.res.writeHead(200);
+    var wooGif = getWooGif();
+    postMessage(wooGif);
     this.res.end();
   } else {
     console.log("don't care");
@@ -18,10 +26,23 @@ function respond() {
   }
 }
 
-function postMessage() {
-  var botResponse, options, body, botReq;
+function () {
+  var gifs = [
+    "https://media.giphy.com/media/HNhsFOGQqDLR6/giphy.gif",
+    "https://media.giphy.com/media/V80llXf734WzK/giphy.gif",
+    "https://media.giphy.com/media/yUI3a7RwLhOFy/giphy.gif",
+    "https://media.giphy.com/media/125WvQGXcUfEBy/giphy.gif",
+    "https://media.giphy.com/media/EHz0YB2dw6rGU/giphy.gif",
+    "https://media.giphy.com/media/FXo3Din7pWybK/giphy.gif"
+  ];
 
-  botResponse = cool();
+  var rand = Math.round(Math.random()*10);
+
+  return gifs[rand];
+}
+
+function postMessage(botResponse) {
+  var options, body, botReq;
 
   options = {
     hostname: 'api.groupme.com',
