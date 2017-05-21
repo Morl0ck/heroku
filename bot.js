@@ -36,7 +36,7 @@ function getWooGif() {
     "https://media.giphy.com/media/FXo3Din7pWybK/giphy.gif"
   ];
 
-  var rand = Math.round(Math.random()*10);
+  var rand = Math.round(Math.random()*5);
 
   return gifs[rand];
 }
