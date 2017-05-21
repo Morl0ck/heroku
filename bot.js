@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/,
-      woo = /woo/;
+      wooRegex = /woo/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -14,7 +14,7 @@ function respond() {
     postMessage(botResponse);
     this.res.end();
   }
-  else if () {
+  else if (request.text && wooRegex.test(request.text)) {
     this.res.writeHead(200);
     var wooGif = getWooGif();
     postMessage(wooGif);
