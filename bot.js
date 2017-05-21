@@ -26,7 +26,7 @@ function respond() {
   }
 }
 
-function () {
+function getWooGif() {
   var gifs = [
     "https://media.giphy.com/media/HNhsFOGQqDLR6/giphy.gif",
     "https://media.giphy.com/media/V80llXf734WzK/giphy.gif",
